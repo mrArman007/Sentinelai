@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - SentinelAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                    <path d="M2 17l10 5 10-5"/>
+                    <path d="M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <a href="/" class="logo-text-link"><span class="logo-text">Sentinel<span class="logo-accent">AI</span></span></a>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">Auditor</a>
+            <a href="/docs" class="nav-link">Documentation</a>
+            <a href="/api" class="nav-link active">API</a>
+            <div class="nav-badge">BETA</div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <section class="doc-section">
+            <h1 class="doc-title">API Reference</h1>
+            <p class="doc-subtitle">REST API endpoints for SentinelAI security analysis</p>
+
+            <div class="api-endpoint">
+                <div class="api-method">POST</div>
+                <div class="api-path">/analyze</div>
+                <p class="api-desc">Analyze Solidity smart contract code for vulnerabilities.</p>
+
+                <div class="api-section">
+                    <h4>Request Body</h4>
+                    <pre class="api-code">{
+  "code": "pragma solidity ^0.8.0;
+contract MyContract { ... }"
+}</pre>
+                </div>
+
+                <div class="api-section">
+                    <h4>Response</h4>
+                    <pre class="api-code">{
+  "score": 25,
+  "summary": "CRITICAL: Contract has severe security flaws...",
+  "findings_count": 5,
+  "critical_count": 2,
+  "high_count": 2,
+  "medium_count": 1,
+  "findings": [
+    {
+      "id": "reentrancy",
+      "severity": "CRITICAL",
+      "title": "Reentrancy",
+      "description": "External call before state update...",
+      "line": 15,
+      "fix": "Update state variables BEFORE external calls...",
+      "confidence": "92%"
+    }
+  ],
+  "type": "contract"
+}</pre>
+                </div>
+            </div>
+
+            <div class="api-endpoint">
+                <div class="api-method post">POST</div>
+                <div class="api-path">/scan-website</div>
+                <p class="api-desc">Scan a live website for security misconfigurations.</p>
+
+                <div class="api-section">
+                    <h4>Request Body</h4>
+                    <pre class="api-code">{
+  "url": "example.com"
+}</pre>
+                </div>
+
+                <div class="api-section">
+                    <h4>Response</h4>
+                    <pre class="api-code">{
+  "score": 45,
+  "summary": "CRITICAL: example.com has severe security flaws...",
+  "url": "https://example.com",
+  "status": 200,
+  "findings_count": 8,
+  "critical_count": 1,
+  "high_count": 4,
+  "medium_count": 3,
+  "findings": [
+    {
+      "id": "missing_https",
+      "severity": "CRITICAL",
+      "title": "Missing HTTPS Encryption",
+      "description": "Website does not use HTTPS...",
+      "fix": "Enable SSL/TLS certificate...",
+      "impact": "Man-in-the-middle attacks...",
+      "confidence": "100%",
+      "location": "Protocol Layer"
+    }
+  ],
+  "headers": { ... },
+  "is_https": false,
+  "type": "website"
+}</pre>
+                </div>
+            </div>
+
+            <div class="api-endpoint">
+                <div class="api-method get">GET</div>
+                <div class="api-path">/sample</div>
+                <p class="api-desc">Returns a vulnerable sample Solidity contract for testing.</p>
+
+                <div class="api-section">
+                    <h4>Response</h4>
+                    <pre class="api-code">{
+  "code": "// SPDX-License-Identifier: MIT
+pragma solidity ^0.6.0;
+contract VulnerableBank { ... }"
+}</pre>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-text">Sentinel<span class="logo-accent">AI</span></span>
+                <p>Securing the future of decentralized finance and web applications</p>
+            </div>
+            <div class="footer-links">
+                <a href="/docs">Documentation</a>
+                <a href="/api">API Reference</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+                        <div class="footer-credits">
+                <div class="credit-main">
+                    <span class="credit-name">Mohammad Arman Mansoori (GToxicK)</span>
+                    <span class="credit-separator">|</span>
+                    <span class="credit-name">Harsh Mishra</span>
+                    <span class="credit-separator">|</span>
+                    <span class="credit-name">Komal Moheshwar</span>
+                </div>
+                <div class="credit-main" style="margin-top: 0.25rem;">
+                    <span class="credit-role">B.Tech CSE Students</span>
+                    <span class="credit-separator">|</span>
+                    <span class="credit-uni">Jiwaji University, Gwalior</span>
+                </div>
+                <p class="credit-note">Built for college project demonstration. Not for production use without proper auditing.</p>
+            </div>
+    </footer>
+</body>
+</html>
