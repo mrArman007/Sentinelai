@@ -2080,3 +2080,12 @@ body {
 .footer-links a:hover {
     color: var(--accent-cyan);
 }
+
+.nav-ext{text-decoration:none;position:relative;color:inherit}
+.nav-ext::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;background:currentColor;transition:width .3s ease}
+.nav-ext:hover::after{width:100%}
+
+/* Global animated underline */
+a{text-decoration:none;position:relative}
+a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:currentColor;transition:width .3s ease}
+a:hover::after,a:focus::after{width:100%}
